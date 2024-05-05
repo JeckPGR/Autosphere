@@ -13,7 +13,7 @@ export default function Dropdown({ title, items, isOpen, toggleDropdown }) {
       <Menu.Button
         as="button"
         onClick={toggleDropdown}
-        className="flex lg:items-center lg:hover:bg-indigo-600 lg:hover:text-white font-semibold transition-colors duration-300 p-3 ease-in-out lg:justify-center justify-between w-full  gap-x-1 text-secondary  rounded-full"
+        className="flex lg:items-center lg:hover:bg-indigo-600 lg:hover:text-white font-semibold transition-colors duration-300 p-3 ease-in-out lg:justify-center justify-between   gap-x-1 text-secondary  rounded-full"
       >
         {title}
         <IoIosArrowDown
@@ -32,7 +32,7 @@ export default function Dropdown({ title, items, isOpen, toggleDropdown }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className=" relative lg:absolute z-10 mt-1 w-56 origin-top-right rounded-md lg:border overflow-hidden lg:bg-white lg:shadow-lg">
+        <Menu.Items className=" relativelg:absolute z-10 mt-1 w-56 origin-top-right rounded-md lg:border overflow-hidden lg:bg-white lg:shadow-lg">
           {items.map((item, index) => (
             <Menu.Item key={index}>
               {({ active }) => (
@@ -41,7 +41,7 @@ export default function Dropdown({ title, items, isOpen, toggleDropdown }) {
                   className={classNames(
                     active
                       ? "lg:bg-gray-100 lg:text-gray-900"
-                      : "lg:text-gray-700 text-white",
+                      : "lg:text-gray-700 ",
                     "block px-4 py-2 text-sm"
                   )}
                 >
