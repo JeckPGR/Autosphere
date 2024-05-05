@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hover-line::before,
+.hover-line::after {
+  content: "";
+  position: absolute;
+  background-color: bisque;
+  width: 0;
+  height: 2px;
+  /* Change this to your desired color */
+  transition: width 0.6s ease;
+}
+.hover-line::before {
+  bottom: 0;
+  left: 7px;
+}
+.hover-line::after {
+  top: 6px;
+  right: 8px;
+}
+
+.hover-line:hover::after,
+.hover-line:hover::before {
+  width: 80%; /* Adjust this value to control the expansion width */
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 15s linear infinite;
+  width: 100%;
+}
+
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  animation: marquee-reverse 15s linear infinite;
+  width: max-content;
+}
+
+/* Existing styles for html and body */
+
+.genre-dropdown::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+}
+
+.genre-dropdown::-webkit-scrollbar-track {
+  background: rgba(57, 57, 57, 0.16);
+}
+
+.genre-dropdown::-webkit-scrollbar-thumb {
+  background: rgba(116, 114, 120, 0.844);
+  border-radius: 1vh;
+}
+
+.genre-dropdown::-webkit-scrollbar-thumb:hover {
+  background: rgba(94, 127, 176, 0.518);
+}
+
+.text-with-background {
+  position: relative;
+}
+
+.text-with-background:hover::after {
+  content: attr(data-tooltip);
+  width: 100px; /* Mengambil teks dari atribut data-tooltip */
+  position: absolute;
+  transition: 0.7s ease-in;
+  font-size: 13px;
+  top: -50px; /* Atur posisi teks yang muncul */
+  left: 60px; /* Atur posisi teks yang muncul */
+  transform: translateX(-50%); /* Pusatkan teks secara horizontal */
+  background-color: rgb(23, 23, 23); /* Atur warna latar belakang */
+  color: rgb(220, 220, 220); /* Atur warna teks */
+  padding: 5px 10px; /* Atur padding untuk jarak antara teks dan latar belakang */
+  border-radius: 5px; /* Atur sudut melengkung */
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease forwards;
+}
+
+.slide-down {
+  animation: slideDown 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
