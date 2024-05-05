@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Burger from "./Burgers/Burger";
 import Dropdown from "./Dropdown";
+import { Link } from "react-router-dom";
 
 const languange = [
   {
@@ -18,13 +19,11 @@ const Navlist = [
     title: "Tentang Kami",
     link: "/TentangKami",
     isdropdown: false,
-    id: "About",
   },
   {
     title: "Jual & Beli",
     link: "/JualBeli",
     isdropdown: true,
-    id: "Jubel",
     dropdownItems: [
       { element: "/JualBeli/JualBeliMobil", label: "Jual & Beli Mobil" },
       { element: "/JualBeli/JualBeliMotor", label: "Jual & Beli Motor" },
@@ -34,7 +33,6 @@ const Navlist = [
     title: "Layanan",
     link: "/Layanan",
     isdropdown: true,
-    id: "Services",
     dropdownItems: [
       { element: "/Layanan/KonsultasiOnline", label: "Konsultasi Online" },
       {
@@ -51,15 +49,6 @@ const Navlist = [
     title: "Informasi & Berita",
     link: "/InformasiBerita",
     isdropdown: false,
-    id: "Berita & Informasi",
-    dropdownItems: [
-      { element: "/InformasiBerita/Artikel", label: "Artikel Terbaru" },
-      { element: "/InformasiBerita/TipsPerawatan", label: "Tips Perawatan" },
-      {
-        element: "/InformasiBerita/PanduanPembelian",
-        label: "Panduan Pembelian",
-      },
-    ],
   },
 ];
 
@@ -94,14 +83,14 @@ export const Navbar = () => {
                   />
                 ) : (
                   <>
-                    <a
-                      href={item.link} // Atur tautan langsung jika tidak ada dropdown
+                    <Link
+                      to={item.link} // Atur tautan langsung jika tidak ada dropdown
                       key={index}
                       onClick={() => toggleDropdown(null)}
                       className="p-3  relative  rounded-full flex active:text-white/40  lg:hover:bg-indigo-600 lg:hover:text-white  font-semibold  transition-all duration-300  ease-in-out"
                     >
                       {item.title}
-                    </a>
+                    </Link>
                   </>
                 )}
               </div>
@@ -148,9 +137,9 @@ export const Navbar = () => {
                   />
                 </div>
               ) : (
-                <a href={item.link} className="block  font-semibold p-4 ">
+                <Link to={item.link} className="block  font-semibold p-4 ">
                   {item.title}
-                </a>
+                </Link>
               )}
             </li>
           ))}

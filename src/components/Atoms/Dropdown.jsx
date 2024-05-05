@@ -32,7 +32,7 @@ export default function Dropdown({ title, items, isOpen, toggleDropdown }) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className=" relativelg:absolute z-10 mt-1 w-56 origin-top-right rounded-md lg:border overflow-hidden lg:bg-white lg:shadow-lg">
+        <Menu.Items className=" relative lg:absolute z-10 mt-1 w-56 origin-top-right rounded-md lg:border overflow-hidden lg:bg-white lg:shadow-lg">
           {items.map((item, index) => (
             <Menu.Item key={index}>
               {({ active }) => (
@@ -41,7 +41,7 @@ export default function Dropdown({ title, items, isOpen, toggleDropdown }) {
                   className={classNames(
                     active
                       ? "lg:bg-gray-100 lg:text-gray-900"
-                      : "lg:text-gray-700 ",
+                      : "lg:text-gray-700 text-white",
                     "block px-4 py-2 text-sm"
                   )}
                 >
