@@ -36,7 +36,7 @@ const SorotanNewsCard = ({ title, url, urlToImage, author }) => {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="h-fit hover:shadow-md transition-shadow duration-300 ease-in"
+      className="h-fit shadow-lg hover:shadow-slate-700/30 transition-shadow  duration-300 ease-in-out"
     >
       <div className="overflow-hidden">
         {urlToImage && (

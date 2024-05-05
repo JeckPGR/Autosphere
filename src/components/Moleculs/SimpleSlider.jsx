@@ -96,12 +96,14 @@ export default function SimpleSlider({
             ))}
         </Slider>
         <button
+          aria-label="Carousel Previous Slide"
           className="absolute top-1/2 lg:-left-6 -left-4 z-20 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg hover:bg-slate-200 duration-300 ease-out shadow-slate-800/30"
           onClick={handlePrev}
         >
           <IoIosArrowBack size={26} color="black" />
         </button>
         <button
+          aria-label="Carousel Next Slide"
           className="absolute top-1/2 lg:right-0 -right-5 md:right-1 z-20 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg hover:bg-slate-200 duration-300 ease-out shadow-slate-800/30"
           onClick={handleNext}
         >

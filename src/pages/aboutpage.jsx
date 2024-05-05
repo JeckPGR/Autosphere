@@ -1,15 +1,10 @@
-import { useEffect } from "react";
 import { CTABtn } from "../components/Fragments/CallToAction";
 import Car from "../assets/Car.webp";
 import Journey from "../assets/Jorney.svg";
-import AOS from "aos";
-import "aos/dist/aos.css";
+
 import { Analysis } from "../components/Fragments/Analysis";
 
 export const AboutPage = () => {
-  useEffect(() => {
-    AOS.init();
-  }, []);
   return (
     <section className="bg-slate-100">
       <main className="container flex flex-col justify-center items-center py-10  px-6  mx-auto overflow-hidden ">
@@ -57,6 +52,7 @@ export const AboutPage = () => {
         <CTABtn
           title=" Bergabung Dalam Revolusi Otomotif !"
           subtitle=" Ingin tahu lebih lanjut tentang bagaimana kami bisa membantu? Kami siap menjawab pertanyaan Anda."
+          link="/Layanan/KonsultasiOnline"
         >
           Hubungi Kami
         </CTABtn>

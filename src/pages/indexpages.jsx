@@ -49,6 +49,7 @@ export const IndexPage = () => {
         <CTABtn
           title=" Mulai tertarik dengan Dunia Otomotif ?"
           subtitle=" Konsultasikan dengan ahlinya!"
+          link="/Layanan/KonsultasiOnline"
         >
           Hubungi Kami
         </CTABtn>

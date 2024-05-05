@@ -1,29 +1,27 @@
 import { ExpertCard } from "../Moleculs/ExpertCard";
-
+import menpicture from "../../assets/Icon/men.webp";
 const expertCommentData = [
   {
     comment:
       "Pengetahuan yang mendalam tentang pasar otomotif membuat kami terdepan.",
     expertName: "Dr. John Doe",
     expertTitle: "Ahli Otomotif",
-    image: "url-to-expert-image-1.jpg",
+    image: menpicture,
   },
   {
     comment:
       "Kami memberikan analisis terpercaya & terjamin untuk semua kebutuhan otomotif Anda.",
-    expertName: "Jane Smith",
+    expertName: "Samuel L Jackson",
     expertTitle: "Konsultan Otomotif",
-    image: "url-to-expert-image-2.jpg",
+    image: menpicture,
   },
   {
     comment:
       "Dapatkan pandangan yang mendalam dan analisis yang dapat anda andalkan.",
-    expertName: "Jane Smith",
+    expertName: "goofy gober",
     expertTitle: "Pakar Otomotif ",
-    image: "url-to-expert-image-2.jpg",
+    image: menpicture,
   },
-
-  // Tambahkan lebih banyak data jika diperlukan
 ];
 
 export const ExpertIndex = () => {
@@ -46,6 +44,7 @@ export const ExpertIndex = () => {
               key={index}
               expertName={data.expertName}
               expertTitle={data.expertTitle}
+              img={data.image}
             >
               {data.comment}
             </ExpertCard>

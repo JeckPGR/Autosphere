@@ -1,10 +1,7 @@
 import PropTypes from "prop-types";
-export const Label = ({ htmlFor, children, custom }) => {
+export const Label = ({ htmlFor, children }) => {
   return (
-    <label
-      htmlFor={htmlFor}
-      className={`block lg:text-lg font-medium mb-1 ${custom}`}
-    >
+    <label htmlFor={htmlFor} className="block lg:text-lg font-medium mb-1 ">
       {children}
     </label>
   );
@@ -12,6 +9,6 @@ export const Label = ({ htmlFor, children, custom }) => {
 
 Label.propTypes = {
   htmlFor: PropTypes.string.isRequired,
-  custom: PropTypes.string.isRequired,
+
   children: PropTypes.string.isRequired,
 };

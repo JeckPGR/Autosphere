@@ -53,7 +53,7 @@ export const AbroadNewsCard = () => {
         <a
           href={article.url}
           key={index}
-          className="ring-1 cursor-pointer ring-slate-300 min-w-[300px] hover:bg-slate-300 duration-300 ease-in-out max-w-xs rounded-md flex flex-col hover:inset-1"
+          className="ring-1 cursor-pointer ring-slate-300 min-w-[300px] hover:bg-slate-200 duration-300 ease-in-out max-w-xs rounded-md flex flex-col hover:inset-1"
         >
           <img
             src={article.urlToImage || "https://via.placeholder.com/400"}

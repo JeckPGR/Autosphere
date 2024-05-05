@@ -205,18 +205,6 @@ const HitungBiayaPerbaikan = () => {
     Kelas: "",
   };
 
-  useEffect(() => {
-    // Load submissions from local storage
-    const loadedSubmissions =
-      JSON.parse(localStorage.getItem("submissions")) || [];
-    setSubmissions(loadedSubmissions);
-  }, []);
-
-  useEffect(() => {
-    // Store submissions in local storage
-    localStorage.setItem("submissions", JSON.stringify(submissions));
-  }, [submissions]);
-
   const [formState, setFormState] = useState(initialFormState);
   const serviceOptions = {
     Mobil: ["Ganti Oli", "Servis Rem", "Servis AC", "Tune Up"],
@@ -398,7 +386,7 @@ const HitungBiayaPerbaikan = () => {
       {isActivetype === "Mobil" ? (
         <form
           onSubmit={handleSubmit}
-          className={`bg-white shadow-md rounded-md flex flex-col p-6 ${
+          className={`bg-slate-50 mt-2 shadow rounded-md flex flex-col px-6 py-4 ${
             isActivetype === "Mobil" && "slide-up"
           }`}
         >
@@ -514,7 +502,7 @@ const HitungBiayaPerbaikan = () => {
       ) : (
         <form
           onSubmit={handleSubmit}
-          className={`bg-white shadow-md rounded-md flex flex-col p-6 ${
+          className={`bg-slate-50 mt-2 shadow rounded-md flex flex-col px-6 py-4 ${
             isActivetype === "Motor" && "slide-up"
           }`}
         >
@@ -743,10 +731,10 @@ const HitungBiayaPerbaikan = () => {
                 </li>
               </ul>
               <button
-                className="bg-red-600 hover:bg-red-700 mt-4 text-white font-bold py-2 px-4 rounded"
+                className="bg-red-600 hover:bg-red-700 mt-4 text-white font-semibold py-2 px-4 rounded"
                 onClick={() => setSelectedSubmission(null)}
               >
-                Close
+                Tutup
               </button>
             </div>
           </div>

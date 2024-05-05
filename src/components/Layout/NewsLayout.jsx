@@ -98,7 +98,7 @@ const AbroadNews = () => {
         <h1 className="font-semibold md:text-2xl ">Berita Luar Negri {">"}</h1>
         <Seemore />
       </div>
-      <div className="flex overflow-x-auto lg:overflow-hidden sm:-w-4xl gap-3 py-4">
+      <div className="flex overflow-x-auto genre-dropdown sm:-w-4xl gap-3 py-4">
         <AbroadNewsCard />
       </div>
     </div>
@@ -112,7 +112,7 @@ const Latestnews = () => {
         <h1 className="font-semibold md:text-2xl   ">Berita Hangat {">"}</h1>
         <Seemore />
       </div>
-      <div className="flex overflow-x-auto lg:overflow-hidden sm:-w-4xl gap-3 py-4">
+      <div className="flex overflow-x-auto genre-dropdown  sm:-w-4xl gap-3 py-4">
         {/* Each child element should have a defined width, not just "w-full" if they need to be wider than their container for scrolling to activate */}
         {automotiveNews.map((news, index) => (
           <LatestNewsCard

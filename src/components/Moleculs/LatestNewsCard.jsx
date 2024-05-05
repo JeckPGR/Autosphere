@@ -8,12 +8,12 @@ export const LatestNewsCard = ({
   img,
 }) => {
   return (
-    <div className="ring-1 cursor-pointer ring-slate-300 min-w-[300px] hover:bg-slate-300 duration-300 ease-in-out max-w-xs rounded-md flex flex-col hover:inset-1">
+    <div className="ring-1 cursor-pointer ring-slate-300 min-w-[300px] hover:bg-slate-200 duration-300 ease-in-out max-w-xs rounded-md flex flex-col hover:inset-1">
       <img
         src={img}
         alt={type}
         loading="lazy"
-        className="h-48 w-full object-cover"
+        className="h-48 w-full object-cover "
       />
       <div className="p-3 flex flex-col justify-between  flex-grow">
         <div className="flex items-center gap-2 text-gray-500 text-sm font-semibold ">

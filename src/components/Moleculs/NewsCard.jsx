@@ -1,4 +1,15 @@
+import PropTypes from "prop-types";
+
 export const NewsCard = ({ title, deskripsi, img, type, tanggal, CTA }) => {
+  const getTypeClass = () => {
+    if (type === "News") {
+      return "bg-gray-00 text-gray-700"; // Ganti dengan kelas CSS yang sesuai untuk jenis berita
+    } else if (type === "Article") {
+      return "bg-gray-900 text-slate-200"; // Ganti dengan kelas CSS yang sesuai untuk jenis artikel
+    } else {
+      return "bg-gray-900 text-slate-200"; // Atur kelas CSS default jika nilai prop type tidak valid
+    }
+  };
   return (
     <div className="flex  justify-between   h-[450px] mx-2 ">
       <div className="flex-col overflow-hidden shadow-lg flex gap-y-4">
@@ -11,9 +22,8 @@ export const NewsCard = ({ title, deskripsi, img, type, tanggal, CTA }) => {
         <div className="flex flex-col  justify-between  gap-y-1 px-4 ">
           <div className="flex items-center justify-between  ">
             <span
-              className={`inline-block  rounded-full px-3 py-1 text-xs font-medium text-gray-700 mr-2 mb-2 ${
-                type === "News" ? "bg-gray-00" : "bg-gray-900 text-slate-200"
-              }`}
+              className={`inline-block  rounded-full px-3 py-1 text-xs font-medium text-gray-700 mr-2 mb-2 ${getTypeClass}
+                `}
             >
               {type}
             </span>
@@ -31,4 +41,13 @@ export const NewsCard = ({ title, deskripsi, img, type, tanggal, CTA }) => {
       </div>
     </div>
   );
+};
+
+NewsCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  deskripsi: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(["News", "Article", "Education"]).isRequired, // Added "Education" as a valid type
+  tanggal: PropTypes.string.isRequired,
+  CTA: PropTypes.string.isRequired,
 };

@@ -3,14 +3,14 @@ export const Footer = () => {
     <footer className="bg-slate-900    text-white pt-10  ">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4  gap-y-4 gap-x-20">
         <div className="px-6">
-          <h4 className="text-3xl font-semibold mb-4">AutoSphere</h4>
+          <h2 className="text-3xl font-semibold mb-4">AutoSphere</h2>
           <p className="w-[80%]">
             Tujuan utama untuk segala kebutuhan otomotif Anda.
           </p>
         </div>
         {/* Footer Navigation */}
         <div className="flex flex-col text-base px-6">
-          <h5 className=" font-semibold mb-4">Services</h5>
+          <h3 className=" font-semibold mb-4">Services</h3>
           <a href="/AboutUs" className="text-sm hover:text-sky-200 mb-2">
             Tentang Kami
           </a>
@@ -27,7 +27,7 @@ export const Footer = () => {
 
         {/* Contact Info */}
         <div className="flex flex-col px-6">
-          <h5 className="text-lg font-semibold mb-4">Kontak Kami</h5>
+          <h3 className="text-lg font-semibold mb-4">Kontak Kami</h3>
           <address className="text-sm mb-2">
             Jl. Otomotif No. 45, Jakarta
           </address>
@@ -37,7 +37,7 @@ export const Footer = () => {
 
         {/* Social Media Links */}
         <div className="flex flex-col px-6">
-          <h5 className="text-lg font-semibold mb-4">Ikuti Kami</h5>
+          <h3 className="text-lg font-semibold mb-4">Ikuti Kami</h3>
           <a
             href="https://facebook.com"
             className="text-sm hover:text-sky-200 mb-2"

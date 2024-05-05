@@ -27,7 +27,7 @@ const Navlist = [
     id: "Jubel",
     dropdownItems: [
       { element: "/JualBeli/JualBeliMobil", label: "Jual & Beli Mobil" },
-      { element: "/JualBeli/JualBeliMotor", label: "Jual &Beli Motor" },
+      { element: "/JualBeli/JualBeliMotor", label: "Jual & Beli Motor" },
     ],
   },
   {
