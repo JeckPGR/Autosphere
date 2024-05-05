@@ -5,6 +5,9 @@ import { Label } from "../Atoms/Label";
 import { Input } from "../Atoms/Input";
 import Accord from "../Moleculs/Accordion";
 import Swal from "sweetalert2";
+import { IoMdAdd, IoMdTrash } from "react-icons/io";
+import { FaEye } from "react-icons/fa";
+
 // import { CSSTransition, TransitionGroup } from "react-transition-group";
 const PertanyaanUmum = [
   {
@@ -189,17 +192,30 @@ const DashboardKondisiKendaraan = () => {
 
 const HitungBiayaPerbaikan = () => {
   // State untuk menyimpan data input biaya perbaikan
-  const [isActivetype, setisActivetype] = useState("Mobil");
+  const [isActivetype, setIsActivetype] = useState("Mobil");
   const [submissions, setSubmissions] = useState([]);
+  const [selectedSubmission, setSelectedSubmission] = useState(null);
   const newCardRef = useRef(null);
   const initialFormState = {
     namapelanggan: "",
     PlatNomor: "",
     Spesifikasi: "",
-    service: "",
+    services: [{ service: "" }],
     additionalInfo: "",
     Kelas: "",
   };
+
+  useEffect(() => {
+    // Load submissions from local storage
+    const loadedSubmissions =
+      JSON.parse(localStorage.getItem("submissions")) || [];
+    setSubmissions(loadedSubmissions);
+  }, []);
+
+  useEffect(() => {
+    // Store submissions in local storage
+    localStorage.setItem("submissions", JSON.stringify(submissions));
+  }, [submissions]);
 
   const [formState, setFormState] = useState(initialFormState);
   const serviceOptions = {
@@ -207,64 +223,77 @@ const HitungBiayaPerbaikan = () => {
     Motor: ["Ganti Oli", "Ganti Ban", "Servis Mesin", "Servis Rantai"],
   };
 
-  // Fungsi untuk menangani perubahan input biaya perbaikan
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormState((prev) => ({ ...prev, [name]: value }));
+    setFormState((prevState) => ({ ...prevState, [name]: value }));
+  };
+  const handleServiceChange = (e, index) => {
+    const { name, value } = e.target;
+    const updatedServices = formState.services.map((service, idx) =>
+      idx === index ? { ...service, [name]: value } : service
+    );
+    setFormState((prevState) => ({ ...prevState, services: updatedServices }));
   };
 
-  // Fungsi untuk menangani submit formulir
-  const calculateTotalCost = (currentState) => {
-    let serviceprice = 0;
-    let kelasprice = 0;
-
-    switch (currentState.service) {
-      case "Ganti Oli":
-        serviceprice = 120000;
-        break;
-      case "Servis Rem":
-        serviceprice = 100000;
-        break;
-      case "Servis AC":
-        serviceprice = 450000;
-        break;
-      case "Tune Up":
-        serviceprice = 55000;
-        break;
-      case "Ganti Ban":
-        serviceprice = 150000;
-        break;
-      case "Servis Mesin":
-        serviceprice = 350000;
-        break;
-      case "Servis Rantai":
-        serviceprice = 100000;
-        break;
-      default:
-        serviceprice = 0;
-    }
-
-    switch (currentState.Kelas) {
-      case "Reguler":
-        kelasprice = 30000;
-        break;
-      case "Executive":
-        kelasprice = 80000;
-        break;
-      default:
-        kelasprice = 0;
-    }
-
-    const totalharga = kelasprice + serviceprice;
-    return totalharga;
+  const addService = () => {
+    setFormState({
+      ...formState,
+      services: [...formState.services, { service: "", Kelas: "" }],
+    });
   };
 
-  // In handleSubmit
+  const removeService = (index) => {
+    const updatedServices = formState.services.filter(
+      (_, idx) => idx !== index
+    );
+    setFormState((prevState) => ({ ...prevState, services: updatedServices }));
+  };
+  const deleteSubmission = (index) => {
+    const updatedSubmissions = submissions.filter((_, idx) => idx !== index);
+    setSubmissions(updatedSubmissions);
+  };
+  const calculateTotalCost = () => {
+    let kelasFee = formState.Kelas === "Executive" ? 80000 : 40000;
+    return (
+      formState.services.reduce((total, { service }) => {
+        let serviceprice = 0;
+
+        switch (service) {
+          case "Ganti Oli":
+            serviceprice = 120000;
+            break;
+          case "Servis Rem":
+            serviceprice = 100000;
+            break;
+          case "Servis AC":
+            serviceprice = 450000;
+            break;
+          case "Tune Up":
+            serviceprice = 55000;
+            break;
+          case "Ganti Ban":
+            serviceprice = 150000;
+            break;
+          case "Servis Mesin":
+            serviceprice = 350000;
+            break;
+          case "Servis Rantai":
+            serviceprice = 100000;
+            break;
+          default:
+            serviceprice = 0;
+        }
+
+        return total + serviceprice;
+      }, 0) + kelasFee
+    );
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // jika tidak sesuai value yang dipilih
-    if (formState.Kelas != "Reguler" && formState.Kelas != "Executive") {
+    // Check if Kelas is properly selected
+    if (formState.Kelas !== "Reguler" && formState.Kelas !== "Executive") {
       Swal.fire({
         title: "Kelas belum dipilih",
         text: "Mohon pilih kelas yang diberikan",
@@ -273,8 +302,12 @@ const HitungBiayaPerbaikan = () => {
       return;
     }
 
-    //  Jika tidak sesuai dari serviceoptions
-    if (!serviceOptions[isActivetype].includes(formState.service)) {
+    // Check if all services are properly selected from serviceOptions
+    const allServicesValid = formState.services.every((service) =>
+      serviceOptions[isActivetype].includes(service.service)
+    );
+
+    if (!allServicesValid) {
       Swal.fire({
         title: "Service belum dipilih",
         text: "Mohon pilih service yang diberikan.",
@@ -283,12 +316,13 @@ const HitungBiayaPerbaikan = () => {
       return;
     }
 
-    const calculatedCost = calculateTotalCost(formState);
+    const calculatedCost = calculateTotalCost();
     const newSubmission = {
       ...formState,
       totalCost: calculatedCost,
       type: isActivetype,
     };
+
     setSubmissions([...submissions, newSubmission]);
   };
 
@@ -303,9 +337,34 @@ const HitungBiayaPerbaikan = () => {
   };
 
   const switchType = (type) => {
-    setisActivetype(type);
+    setIsActivetype(type);
     resetForm();
   };
+
+  function getServicePrice(service) {
+    switch (service) {
+      case "Ganti Oli":
+        return 120000;
+      case "Servis Rem":
+        return 100000;
+      case "Servis AC":
+        return 450000;
+      case "Tune Up":
+        return 55000;
+      case "Ganti Ban":
+        return 150000;
+      case "Servis Mesin":
+        return 350000;
+      case "Servis Rantai":
+        return 100000;
+      default:
+        return 0;
+    }
+  }
+
+  function getClassFee(className) {
+    return className === "Executive" ? 80000 : 40000;
+  }
 
   return (
     <div className="container mx-auto py-8">
@@ -392,26 +451,48 @@ const HitungBiayaPerbaikan = () => {
                 <option value="Executive">Executive</option>
               </select>
             </div>
-            <div>
-              <Label htmlFor="service">Pilih Layanan</Label>
-              <select
-                id="service"
-                name="service"
-                onChange={handleChange}
-                value={formState.service}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 "
-              >
-                <option>Pilih Layanan</option>
-                {serviceOptions[isActivetype].map((service) => (
-                  <option key={service} value={service}>
-                    {service}
-                  </option>
-                ))}
-              </select>
-            </div>
+            {formState.services.map((service, index) => (
+              <div key={index} className="my-1">
+                <div className="flex items-center gap-x-2 mb-2 ">
+                  <Label htmlFor={`service-${index}`}>Pilih Layanan</Label>
+                  <div className="flex gap-x-1 items-center">
+                    {formState.services.length > 1 && (
+                      <button
+                        onClick={() => removeService(index)}
+                        className="bg-red-600 hover:bg-red-400   rounded-full px-1 py-1"
+                      >
+                        <IoMdTrash size={21} color="white" />
+                      </button>
+                    )}
+                    {index === formState.services.length - 1 && (
+                      <button
+                        onClick={addService}
+                        className="bg-blue-600 hover:bg-blue-400   rounded-full px-1 py-1"
+                      >
+                        <IoMdAdd size={21} color="white" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <select
+                  id={`service-${index}`}
+                  name="service"
+                  value={service.service}
+                  onChange={(e) => handleServiceChange(e, index)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                >
+                  <option value="">Pilih Layanan</option>
+                  {serviceOptions[isActivetype].map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ))}
 
             <div>
-              <Label htmlFor="additionalInfo">Informasi tamabahan</Label>
+              <Label htmlFor="additionalInfo">Informasi tambahan</Label>
               <textarea
                 name="additionalInfo"
                 id="additionalInfo"
@@ -488,24 +569,47 @@ const HitungBiayaPerbaikan = () => {
                 <option value="Executive">Executive</option>
               </select>
             </div>
+            {formState.services.map((service, index) => (
+              <div key={index} className="my-1">
+                <div className="flex items-center gap-x-2 mb-2 ">
+                  <Label htmlFor={`service-${index}`}>Pilih Layanan</Label>
+                  <div className="flex gap-x-1 items-center">
+                    {formState.services.length > 1 && (
+                      <button
+                        onClick={() => removeService(index)}
+                        className="bg-red-600 hover:bg-red-400   rounded-full px-1 py-1"
+                      >
+                        <IoMdTrash size={21} color="white" />
+                      </button>
+                    )}
+                    {index === formState.services.length - 1 && (
+                      <button
+                        onClick={addService}
+                        className="bg-blue-600 hover:bg-blue-400   rounded-full px-1 py-1"
+                      >
+                        <IoMdAdd size={21} color="white" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <select
+                  id={`service-${index}`}
+                  name="service"
+                  value={service.service}
+                  onChange={(e) => handleServiceChange(e, index)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                >
+                  <option value="">Pilih Layanan</option>
+                  {serviceOptions[isActivetype].map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ))}
             <div>
-              <Label htmlFor="Kelas">Pilih Layanan</Label>
-              <select
-                name="service"
-                onChange={handleChange}
-                value={formState.service}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 "
-              >
-                <option>Pilih Layanan</option>
-                {serviceOptions[isActivetype].map((service) => (
-                  <option key={service} value={service}>
-                    {service}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <Label htmlFor="additionalInfo">Informasi tamabahan</Label>
+              <Label htmlFor="additionalInfo">Informasi tambahan</Label>
               <textarea
                 name="additionalInfo"
                 id="additionalInfo"
@@ -547,16 +651,104 @@ const HitungBiayaPerbaikan = () => {
               <p>Kendaraan: {submission.Spesifikasi}</p>
               <p>Kelas: {submission.Kelas}</p>
               <p>Plate: {submission.PlatNomor}</p>
-              <p>Service: {submission.service}</p>
-              <p>Additional Info: {submission.additionalInfo}</p>
+              <p>
+                Service:{" "}
+                {submission.services
+                  .map((service) => service.service)
+                  .join(", ")}
+              </p>
+              <p className=" line-clamp-2">
+                Additional Info: {submission.additionalInfo}
+              </p>
               <p className="font-bold">
                 Total Cost: Rp {submission.totalCost.toLocaleString("id-ID")}
               </p>
+              <div className="absolute flex items-center gap-x-2 top-3 right-3">
+                <button
+                  onClick={() => deleteSubmission(index)}
+                  className="bg-red-600 px-2 py-2 rounded-md hover:bg-red-400 "
+                >
+                  <IoMdTrash size={21} color="white" />
+                </button>
+                <button
+                  onClick={() => setSelectedSubmission(submission)}
+                  className="bg-blue-600 px-2 py-2 rounded-md hover:bg-blue-400 "
+                >
+                  <FaEye size={21} color="white" />
+                </button>
+              </div>
             </div>
           ))
         ) : (
           <div className="flex  w-full  text-3xl text-gray-400 font-semibold uppercase items-center justify-center">
             <p className="text-center">Mulai demo Service</p>
+          </div>
+        )}
+        {selectedSubmission && (
+          <div className="fixed inset-0 bg-black/50 z-40 flex justify-center  items-center">
+            <div className="bg-white text-black z-20 ring-1 rounded-md  w-[95%] md:w-[500px]   ring-slate-100 p-6  w">
+              <h2 className="text-2xl font-semibold mb-4 text-center">
+                Detail for {selectedSubmission.namapelanggan}
+              </h2>
+              <ul className="flex flex-col gap-y-1">
+                <li>
+                  <span className=" font-semibold">Plat Nomor : </span>
+                  {selectedSubmission.PlatNomor}
+                </li>
+                <li>
+                  <span className=" font-semibold">Spesifikasi Mobil :</span>{" "}
+                  {selectedSubmission.Spesifikasi}
+                </li>
+                <li>
+                  <span className=" font-semibold">Kelas : </span>
+                  {selectedSubmission.Kelas}
+                </li>
+                <li className=" font-semibold">
+                  {" "}
+                  Service :
+                  {selectedSubmission.services.map((service, index) => (
+                    <p key={index}>
+                      <span>
+                        {" "}
+                        {index + 1}. {service.service} - Rp{" "}
+                        {getServicePrice(service.service).toLocaleString(
+                          "id-ID"
+                        )}
+                      </span>
+                    </p>
+                  ))}
+                </li>
+                <li className=" font-semibold">
+                  <span>Kelas Fee : </span>
+                  <span>
+                    Rp{" "}
+                    {getClassFee(selectedSubmission.Kelas).toLocaleString(
+                      "id-ID"
+                    )}
+                  </span>
+                </li>
+                <li className=" font-semibold">
+                  <span>Total Cost: </span>
+                  <span>
+                    {" "}
+                    Rp {selectedSubmission.totalCost.toLocaleString("id-ID")}
+                  </span>
+                </li>
+                <li>
+                  <p className=" font-semibold"> Informasi Lengkap :</p>
+                  <p className=" overflow-y-auto max-h-48">
+                    {" "}
+                    {selectedSubmission.additionalInfo}
+                  </p>
+                </li>
+              </ul>
+              <button
+                className="bg-red-600 hover:bg-red-700 mt-4 text-white font-bold py-2 px-4 rounded"
+                onClick={() => setSelectedSubmission(null)}
+              >
+                Close
+              </button>
+            </div>
           </div>
         )}
       </div>
