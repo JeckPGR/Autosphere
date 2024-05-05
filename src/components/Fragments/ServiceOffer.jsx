@@ -5,6 +5,7 @@ import Servis from "../../assets/Icon/Services.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 export const ServiceOffers = () => {
   useEffect(() => {
     AOS.init();
@@ -31,7 +32,10 @@ export const ServiceOffers = () => {
           data-aos-duration="700"
           className=" lg:w-[60%] grid grid-cols-2 grid-rows-2 md:grid-cols-6 w-full gap-3"
         >
-          <div className="border-2 rounded-md border-slate-200 flex flex-col gap-2 font-medium bg-white hover:shadow-lg transition-shadow duration-150 justify-center items-center p-2  md:col-span-2 row-span-2  ">
+          <Link
+            to="/JualBeli/JualBeliMobil"
+            className="border-2 rounded-md border-slate-200 flex flex-col gap-2 font-medium bg-white hover:shadow-lg transition-shadow duration-150 justify-center items-center p-2  md:col-span-2 row-span-2  "
+          >
             <img
               src={Mobil}
               alt="Mobil Services"
@@ -39,8 +43,11 @@ export const ServiceOffers = () => {
               className="w-20 group-hover:text-white"
             />
             <p className="lg:text-xl">Mobil</p>
-          </div>
-          <div className="border-2 rounded-md border-slate-200 flex flex-col gap-2 font-medium bg-white hover:shadow-lg transition-shadow duration-150 justify-center items-center p-3   md:col-span-2 row-span-2 lg:row-span-1">
+          </Link>
+          <Link
+            to="/JualBeli/JualBeliMotor"
+            className="border-2 rounded-md border-slate-200 flex flex-col gap-2 font-medium bg-white hover:shadow-lg transition-shadow duration-150 justify-center items-center p-3   md:col-span-2 row-span-2 lg:row-span-1"
+          >
             <img
               src={Motor}
               alt="Motor Services"
@@ -48,8 +55,11 @@ export const ServiceOffers = () => {
               className="w-20 group-hover:text-white"
             />
             <p className="lg:text-xl">Motor</p>
-          </div>
-          <div className="border-2 rounded-md border-slate-200 flex flex-col gap-2 font-medium bg-white hover:shadow-lg transition-shadow duration-150 justify-center items-center p-3  md:col-span-2 lg:row-span-2 ">
+          </Link>
+          <Link
+            to="/Layanan/KonsultasiOnline"
+            className="border-2 rounded-md border-slate-200 flex flex-col gap-2 font-medium bg-white hover:shadow-lg transition-shadow duration-150 justify-center items-center p-3  md:col-span-2 lg:row-span-2 "
+          >
             <img
               src={Konsul}
               alt="Consult Services"
@@ -57,8 +67,11 @@ export const ServiceOffers = () => {
               className="w-16 group-hover:text-white"
             />
             <p className="lg:text-xl">Konsultasi</p>
-          </div>
-          <div className="border-2 rounded-md border-slate-200 flex flex-col gap-2 font-medium bg-white hover:shadow-lg transition-shadow duration-150 justify-center items-center p-3  md:col-span-2 ">
+          </Link>
+          <Link
+            to="/Layanan/HitungBiayaPerbaikan"
+            className="border-2 rounded-md border-slate-200 flex flex-col gap-2 font-medium bg-white hover:shadow-lg transition-shadow duration-150 justify-center items-center p-3  md:col-span-2 "
+          >
             <img
               src={Servis}
               alt="Servis Kendaraan"
@@ -66,7 +79,7 @@ export const ServiceOffers = () => {
               className="w-16 group-hover:text-white"
             />
             <p className="lg:text-xl">Servis</p>
-          </div>
+          </Link>
         </div>
       </div>
     </>
