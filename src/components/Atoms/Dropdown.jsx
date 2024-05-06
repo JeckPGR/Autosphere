@@ -13,7 +13,7 @@ export default function Dropdown({ title, items, isOpen, toggleDropdown }) {
       <Menu.Button
         as="button"
         onClick={toggleDropdown}
-        className="flex lg:items-center w-full lg:hover:bg-indigo-600 lg:hover:text-white font-semibold transition-colors duration-300 p-3 ease-in-out lg:justify-center justify-between   gap-x-1 text-secondary  rounded-full"
+        className="flex lg:items-center lg:hover:bg-indigo-600 lg:hover:text-white font-semibold transition-colors duration-300 p-3 ease-in-out lg:justify-center justify-between   gap-x-1 text-secondary  rounded-full"
       >
         {title}
         <IoIosArrowDown
