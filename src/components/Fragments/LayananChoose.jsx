@@ -47,7 +47,7 @@ const KonsultasiOnline = () => {
   };
 
   return (
-    <div className="container  flex flex-col  gap-x-6 gap-y-10 xl:flex-row mt-2  mx-auto px-4 py-6">
+    <div className="container overflow-hidden  flex flex-col  gap-x-6 gap-y-10 xl:flex-row mt-2  mx-auto px-4 py-6">
       <div className="flex flex-col gap-1 xl:w-1/2">
         <h1
           data-aos="flip-up"

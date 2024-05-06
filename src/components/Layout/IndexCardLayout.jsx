@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import SimpleSlider from "../Moleculs/SimpleSlider";
 import Fortuner from "../../assets/Fortuner.jpg";
 import VWSell from "../../assets/VWSell.webp";
@@ -44,47 +43,25 @@ const IdxSellCardData = [
     cicilX: 25,
   },
 ];
-export const IndexCardLayout = ({ type }) => {
+export const IndexCardLayout = () => {
   useEffect(() => {
     AOS.init();
   }, []);
-  if (type === "Second") {
-    return (
-      <>
-        <div
-          data-aos="zoom-in-up"
-          data-aos-duration="700"
-          className="flex flex-col gap-4 my-10  px-6 py-10 "
-        >
-          <h1 className="text-3xl md:text-2xl font-semibold text-center md:text-left">
-            Barang Second
-          </h1>
-          <div className="w-[90vw]">
-            <SimpleSlider IdxSellCardData={IdxSellCardData} />
-          </div>
-        </div>
-      </>
-    );
-  } else if (type === "TitipJual") {
-    return (
-      <>
-        <div
-          data-aos="zoom-in-up"
-          data-aos-duration="700"
-          className="flex flex-col gap-4 my-10 "
-        >
-          <h1 className="text-3xl md:text-2xl font-semibold text-center md:text-left">
-            Keluaran Terbaru
-          </h1>
-          <div className="w-[90vw] ">
-            <SimpleSlider IdxSellCardData={IdxSellCardData} />
-          </div>
-        </div>
-      </>
-    );
-  }
-};
 
-IndexCardLayout.propTypes = {
-  type: PropTypes.string,
+  return (
+    <>
+      <div
+        data-aos="zoom-in-up"
+        data-aos-duration="700"
+        className="flex flex-col gap-4 my-10 "
+      >
+        <h1 className="text-3xl md:text-2xl font-semibold text-center md:text-left">
+          Keluaran Terbaru
+        </h1>
+        <div className="w-[90vw]  ">
+          <SimpleSlider IdxSellCardData={IdxSellCardData} />
+        </div>
+      </div>
+    </>
+  );
 };

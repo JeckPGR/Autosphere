@@ -40,7 +40,7 @@ export default function Dropdown({ title, items, isOpen, toggleDropdown }) {
                   href={item.element}
                   className={classNames(
                     active
-                      ? "lg:bg-gray-100 lg:text-gray-900"
+                      ? "lg:bg-gray-100 lg:text-gray-900 font-semibold "
                       : "lg:text-gray-700 ",
                     "block px-4 py-2 text-sm"
                   )}

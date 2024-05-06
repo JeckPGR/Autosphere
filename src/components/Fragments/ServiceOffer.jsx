@@ -12,7 +12,7 @@ export const ServiceOffers = () => {
   }, []);
   return (
     <>
-      <div className="w-full flex flex-col gap-4 lg:flex-row justify-center lg:items-center   px-14 py-20 mt-12">
+      <div className="w-full flex flex-col gap-4 lg:flex-row justify-center lg:items-center   px-14 py-14 md:py-20 md:mt-12">
         <div
           data-aos="zoom-in-up"
           data-aos-duration="700"

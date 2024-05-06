@@ -67,7 +67,7 @@ export const Header = () => {
 
   return (
     <>
-      <nav className=" bg-slate-50 text-slate-800 p-4  shadow z-40 relative">
+      <nav className=" bg-slate-50 text-slate-800 p-4   z-40 relative">
         <div className=" relative container mx-auto flex lg:justify-around justify-between items-center">
           <a href="/" className=" text-2xl md:text-4xl  font-semibold  ">
             AutoSphere
@@ -120,7 +120,7 @@ export const Header = () => {
           showMenu ? "translate-y-0 opacity-100" : "-translate-y-full  "
         } lg:hidden`}
       >
-        <ul className="flex flex-col gap-y-3 shadow shadow-slate-700/40">
+        <ul className="flex flex-col gap-y-3 shadow shadow-slate-300/50">
           {Navlist.map((item) => (
             <>
               <li key={item.id}>

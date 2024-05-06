@@ -38,7 +38,7 @@ export const AboutPage = () => {
           className="w-full flex flex-col gap-10 justify-around  lg:flex-row items-center py-10   text-white overflow-hidden "
         >
           <img src={Journey} alt="" className="lg:w-1/3 " />
-          <div className="bg-blue-600 lg:p-16 md:p-12 p-8 text-white w-3/4 lg:w-1/2 rounded-md rotate-1  transition-transform duration-200">
+          <div className="bg-blue-600 lg:p-16 md:p-12 p-8 text-white w-full lg:w-1/2 rounded-md rotate-1  transition-transform duration-200">
             <h2 className="text-3xl font-bold">Berdirinya Kami</h2>
             <p className=" mt-6">
               Pada tahun 2019, Autosphere resmi diluncurkan sebagai hasil dari

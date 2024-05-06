@@ -17,7 +17,9 @@ export const CTABtn = ({ title, subtitle, children, link = "#", custom }) => {
         <h1 className="text-2xl text-center font-semibold text-blue-500">
           {title}
         </h1>
-        <p className=" text-sm text-slate-500 font-semibold">{subtitle}</p>
+        <p className=" text-sm text-center text-slate-500 font-semibold">
+          {subtitle}
+        </p>
         <Link
           to={link}
           className=" bg-blue-600 font-semibold  hover:bg-blue-500 px-4 py-2 rounded-sm duration-200 text-white mt-4 md:mt-2"

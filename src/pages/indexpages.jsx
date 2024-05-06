@@ -17,15 +17,11 @@ export const IndexPage = () => {
   }, []);
   return (
     <>
-      <section className="bg-slate-100 flex flex-col items-center  ">
-        <div className=" flex flex-col gap-y-7 lg:flex-row w-full justify-between items-center lg:px-10  px-6 py-10   ">
-          <div
-            className="lg:w-[60%]"
-            data-aos="fade-right"
-            data-aos-duration="800"
-          >
+      <section className="bg-slate-100 overflow-hidden flex flex-col items-center  ">
+        <div className=" flex flex-col gap-y-7 lg:flex-row w-fit justify-between items-center lg:px-10 px-6   py-10   ">
+          <div data-aos="fade-right" data-aos-duration="800">
             <h2 className="md:text-5xl text-3xl text-center lg:text-left font-black lg:w-[95%] leading-tight">
-              AutoSphere. Menyederhanakan Pengalaman Otomotif Anda!
+              Menyederhanakan Pengalaman Otomotif Anda!
             </h2>
             <p className="lg:w-3/4 mt-8 text-justify md:text-center lg:text-left md:text-lg text-sm">
               Jawaban terbaik dalam dunia otomotif modern. Kami menyederhanakan
@@ -35,14 +31,14 @@ export const IndexPage = () => {
           <img
             src={Car}
             alt="car"
-            className="lg:w-[40%]"
+            className="lg:w-[40%]   w-64 md:w-[90%]"
             data-aos="fade-left"
             data-aos-duration="800"
           />
         </div>
         <ServiceOffers />
         <AnimImage />
-        <IndexCardLayout type="TitipJual" />
+        <IndexCardLayout />
         <ExpertIndex />
         <NewsIndex />
         <FreqAsk />
