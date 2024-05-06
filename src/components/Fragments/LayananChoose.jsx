@@ -145,50 +145,6 @@ const KonsultasiOnline = () => {
 };
 
 // LayananPerbaikan.js
-const DashboardKondisiKendaraan = () => {
-  // Data dummy untuk kondisi kendaraan
-  const vehicleConditionData = {
-    mileage: 50000,
-    engineHealth: "Good",
-    brakeSystem: "Excellent",
-    tirePressure: "Optimal",
-    batteryStatus: "Charged",
-    // Tambahkan lebih banyak data kondisi jika diperlukan
-  };
-
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-semibold mb-4">
-        Dashboard Kondisi Kendaraan Anda
-      </h1>
-      <div className="bg-white shadow-md rounded-md p-6">
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <h2 className="text-lg font-semibold mb-2">Mileage</h2>
-            <p>{vehicleConditionData.mileage} km</p>
-          </div>
-          <div>
-            <h2 className="text-lg font-semibold mb-2">Engine Health</h2>
-            <p>{vehicleConditionData.engineHealth}</p>
-          </div>
-          <div>
-            <h2 className="text-lg font-semibold mb-2">Brake System</h2>
-            <p>{vehicleConditionData.brakeSystem}</p>
-          </div>
-          <div>
-            <h2 className="text-lg font-semibold mb-2">Tire Pressure</h2>
-            <p>{vehicleConditionData.tirePressure}</p>
-          </div>
-          <div>
-            <h2 className="text-lg font-semibold mb-2">Battery Status</h2>
-            <p>{vehicleConditionData.batteryStatus}</p>
-          </div>
-          {/* Tambahkan lebih banyak informasi kondisi kendaraan jika diperlukan */}
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const HitungBiayaPerbaikan = () => {
   // State untuk menyimpan data input biaya perbaikan
@@ -744,4 +700,4 @@ const HitungBiayaPerbaikan = () => {
   );
 };
 
-export { KonsultasiOnline, DashboardKondisiKendaraan, HitungBiayaPerbaikan };
+export { KonsultasiOnline, HitungBiayaPerbaikan };

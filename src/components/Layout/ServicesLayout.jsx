@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import {
   KonsultasiOnline,
-  DashboardKondisiKendaraan,
   HitungBiayaPerbaikan,
 } from "../Fragments/LayananChoose";
 
@@ -12,8 +11,6 @@ export const ServiceLayout = () => {
     switch (subcategory) {
       case "KonsultasiOnline":
         return <KonsultasiOnline />;
-      case "DashboardKondisiKendaraan":
-        return <DashboardKondisiKendaraan />;
       case "HitungBiayaPerbaikan":
         return <HitungBiayaPerbaikan />;
       default:

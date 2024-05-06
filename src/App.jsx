@@ -3,8 +3,8 @@ import { IndexPage } from "./pages/indexpages";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import JualBeliPage from "./pages/jualbelipage";
 import ServicesPage from "./pages/servicespage";
+import { Header } from "./components/Atoms/header";
 import NewsPage from "./pages/newspage";
-import Navbar from "./components/Atoms/Navbar";
 import Footer from "./components/Atoms/Footer";
 const router = createBrowserRouter([
   {
@@ -31,8 +31,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <Navbar />
+      <Header />
       <RouterProvider router={router} />
+
       <Footer />
     </>
   );
