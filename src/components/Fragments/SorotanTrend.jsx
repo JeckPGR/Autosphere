@@ -1,30 +1,74 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import PropTypes from "prop-types";
-const API_KEY = "6c34dd8c6abc44299b3089212e958ff4";
+const trendData = [
+  {
+    title:
+      "The ‘Hollywood Con Queen’ gets a new documentary from Apple TV Plus",
+    author: "Elizabeth Lopatto",
+    source: "The Verge",
+  },
+  {
+    title:
+      "Secrets of the Octopus takes us inside the world of these “aliens on Earth”",
+    author: "Jennifer Ouellette",
+    source: "Ars Technica",
+  },
+  {
+    title: "Apple Considers Expanding Manufacturing Base to Indonesia",
+    author: "Tim Hardwick",
+    source: "MacRumors",
+  },
+  {
+    title:
+      "Orangutan in the wild applied medicinal plant to heal its own injury, biologists say",
+    author: "Bill Chappell",
+    source: "NPR",
+  },
+  {
+    title:
+      "Apple keeps looking for new places to make its stuff that aren't China",
+    author: "Jyoti Mann",
+    source: "Business Insider",
+  },
+];
+
+const sorotanData = [
+  {
+    url: "https://paultan.org/2024/04/17/byd-terpilih-sebagai-rakan-rasmi-euro-2024/",
+    title: "BYD terpilih sebagai rakan rasmi Euro 2024",
+    author: "Izwaashura Sadali",
+    urlToImage:
+      "https://paultan.org/image/2024/04/BYD-EURO-Cup-2024-1-BM-1200x700.jpg",
+  },
+  {
+    url: "https://paultan.org/2024/04/25/beijing-2024-mazda-arata-concept-dipamerkan-varian-ev-dan-phev-versi-produksi-di-china-pada-2025/",
+    title:
+      "Beijing 2024: Mazda Arata concept dipamerkan- varian EV dan PHEV; versi produksi di China pada 2025",
+    author: "Izwaashura Sadali",
+    urlToImage:
+      "https://paultan.org/image/2024/04/Mazda-Arata-concept_Beijing-2024_wm-6-BM-1200x630.jpeg",
+  },
+  {
+    url: "https://paultan.org/2024/05/02/proton-x70-facelift-2024-disahkan-dengan-pemanduan/",
+    title:
+      "Proton X70 facelift 2024 disahkan, dengan pemanduan semi-autonomous Tahap 2 — termasuk ciri Lane Centering Assist",
+    author: "Hazril Hafiz",
+    urlToImage:
+      "https://paultan.org/image/2024/02/2024-Proton-X70-spied-1_BM-1200x801.jpeg",
+  },
+  {
+    url: "https://paultan.org/2024/04/30/beijing-2024-byd-ocean-m-concept-hot-hatch-ev-dengan-rwd-versi-produksi-dilancar-tahun-ini/",
+    title:
+      "Beijing 2024: BYD Ocean-M concept – hot hatch EV dengan RWD; versi produksi dilancar tahun ini",
+    author: "Izwaashura Sadali",
+    urlToImage:
+      "https://paultan.org/image/2024/04/2024_AutoChinaBeijing_BYD_Ocean-M_Concept-1-BM-1200x801.jpg",
+  },
+];
 
 const Sorotan = () => {
-  const [articles, setArticles] = useState([]);
-
-  const fetchNews = async () => {
-    try {
-      const response = await axios.get(
-        `https://newsapi.org/v2/everything?q=Automotive&language=id&apiKey=${API_KEY}`
-      );
-      setArticles(response.data.articles.slice(0, 6)); // Fetching the first 3 articles
-      console.log(response.data);
-    } catch (error) {
-      console.error("Error fetching Sorotan news:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchNews();
-  }, []);
-
   return (
     <div className="grid grid-cols-2  lg:grid-cols-3 gap-3 py-4">
-      {articles.map((article) => (
+      {sorotanData.map((article) => (
         <SorotanNewsCard key={article.url} {...article} />
       ))}
     </div>
@@ -61,28 +105,11 @@ const SorotanNewsCard = ({ title, url, urlToImage, author }) => {
 };
 
 const Trend = () => {
-  const [articles, setArticles] = useState([]);
-
-  const fetchNews = async () => {
-    try {
-      const response = await axios.get(
-        `https://newsapi.org/v2/everything?q=Indonesia&sortBy=popularity&apiKey=${API_KEY}`
-      );
-      setArticles(response.data.articles.slice(0, 5)); // Fetching the first 5 articles
-    } catch (error) {
-      console.error("Error fetching Trend news:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchNews();
-  }, []);
-
   return (
     <div className="flex flex-col space-y-4">
-      {articles.map((article) => (
+      {trendData.map((article) => (
         <TrendNewsCard
-          key={article.url}
+          key={article.title}
           title={article.title}
           author={article.author || "Unknown"}
           source={article.source}
@@ -94,10 +121,10 @@ const Trend = () => {
 
 const TrendNewsCard = ({ title, author, source }) => {
   return (
-    <div className="p-4 shadow-sm hover:shadow-md transition-shadow bg-white rounded-lg">
+    <div className="p-4 cursor-pointer shadow-sm hover:shadow-md transition-shadow bg-white rounded-lg">
       <h5 className="text-lg font-bold line-clamp-2">{title}</h5>
       <p className="text-sm text-gray-600">{author}</p>
-      <p className="text-sm text-blue-700 font-medium">{source.name}</p>
+      <p className="text-sm text-blue-700 font-medium">{source}</p>
     </div>
   );
 };
@@ -105,9 +132,7 @@ const TrendNewsCard = ({ title, author, source }) => {
 TrendNewsCard.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string,
-  source: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-  }).isRequired,
+  source: PropTypes.string.isRequired,
 };
 
 export const SorotanTrend = () => {

@@ -16,6 +16,7 @@ export const AbroadNewsCard = () => {
         );
         const slicedNews = response.data.articles.slice(0, 6);
         setArticles(slicedNews);
+        console.log("abroad news :", slicedNews);
       } catch (err) {
         setError(err.message);
         console.error("Failed to fetch news:", err);

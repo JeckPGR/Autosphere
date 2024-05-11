@@ -73,20 +73,26 @@ export const Header = () => {
             AutoSphere
           </a>
           <div className="hidden lg:flex space-x-4">
-            {Navlist.map((item, index) => (
-              <div key={index}>
+            {Navlist.map((item) => (
+              <div key={item.id}>
                 {item.isdropdown ? (
-                  <Dropdown
-                    title={item.title}
-                    items={item.dropdownItems}
-                    isOpen={activeDropdown === item.id}
-                    toggleDropdown={() => toggleDropdown(item.id)}
-                  />
+                  <div
+                    aria-label="dropdown-button"
+                    onClick={() => toggleDropdown(item.id)}
+                  >
+                    <Dropdown
+                      key={item.id}
+                      title={item.title}
+                      items={item.dropdownItems}
+                      isOpen={activeDropdown === item.id}
+                      toggleDropdown={() => toggleDropdown(item.id)}
+                    />
+                  </div>
                 ) : (
                   <>
                     <a
                       href={item.link} // Atur tautan langsung jika tidak ada dropdown
-                      key={index}
+                      key={item.id}
                       onClick={() => toggleDropdown(null)}
                       className="p-3  relative  rounded-full flex active:text-white/40  lg:hover:bg-indigo-600 lg:hover:text-white  font-semibold  transition-all duration-300  ease-in-out"
                     >

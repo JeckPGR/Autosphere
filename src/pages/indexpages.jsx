@@ -17,7 +17,7 @@ export const IndexPage = () => {
   }, []);
   return (
     <>
-      <section className="bg-slate-100 overflow-hidden flex flex-col items-center  ">
+      <section className="bg-[#fefefe] overflow-hidden flex flex-col items-center  ">
         <div className=" flex flex-col gap-y-7 lg:flex-row w-fit justify-between items-center lg:px-10 px-6   py-10   ">
           <div data-aos="fade-right" data-aos-duration="800">
             <h2 className="md:text-5xl text-3xl text-center lg:text-left font-black lg:w-[95%] leading-tight">

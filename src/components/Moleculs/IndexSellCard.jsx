@@ -9,7 +9,7 @@ export const IdxSellCard = ({ title, harga, img, cicilharga, cicilX }) => {
             src={img}
             alt="Car Sale"
             loading="lazy"
-            className="group-hover:scale-105 h-[211px] w-fit object-center  transition duration-300 ease-in-out"
+            className="group-hover:scale-105 w-full h-[211px]  object-center  transition duration-300 ease-in-out"
           />
         </div>
         <div className="p-4">
