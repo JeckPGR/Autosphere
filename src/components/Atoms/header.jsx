@@ -76,18 +76,13 @@ export const Header = () => {
             {Navlist.map((item) => (
               <div key={item.id}>
                 {item.isdropdown ? (
-                  <div
-                    aria-label="dropdown-button"
-                    onClick={() => toggleDropdown(item.id)}
-                  >
-                    <Dropdown
-                      key={item.id}
-                      title={item.title}
-                      items={item.dropdownItems}
-                      isOpen={activeDropdown === item.id}
-                      toggleDropdown={() => toggleDropdown(item.id)}
-                    />
-                  </div>
+                  <Dropdown
+                    key={item.id}
+                    title={item.title}
+                    items={item.dropdownItems}
+                    isOpen={activeDropdown === item.id}
+                    toggleDropdown={() => toggleDropdown(item.id)}
+                  />
                 ) : (
                   <>
                     <a
