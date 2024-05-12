@@ -11,13 +11,19 @@ export const Footer = () => {
         {/* Footer Navigation */}
         <div className="flex flex-col text-base px-6">
           <h3 className=" font-semibold mb-4">Services</h3>
-          <a href="/AboutUs" className="text-sm hover:text-sky-200 mb-2">
+          <a href="/TentangKami" className="text-sm hover:text-sky-200 mb-2">
             Tentang Kami
           </a>
-          <a href="/JualBeli" className="text-sm hover:text-sky-200 mb-2">
+          <a
+            href="/JualBeli/JualBeliMobil"
+            className="text-sm hover:text-sky-200 mb-2"
+          >
             Jual & Beli
           </a>
-          <a href="/Layanan" className="text-sm hover:text-sky-200 mb-2">
+          <a
+            href="/Layanan/HitungBiayaPerbaikan"
+            className="text-sm hover:text-sky-200 mb-2"
+          >
             Layanan
           </a>
           <a href="/InformasiBerita" className="text-sm hover:text-sky-200">
